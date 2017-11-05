@@ -1,0 +1,1 @@
+./Debug/LinkedList.cpp.o ./Debug/listPalindrome.cpp.o ./Debug/MergeList.cpp.o ./Debug/reverseList.cpp.o ./Debug/util.cpp.o ./Debug/swapNodes.cpp.o   
