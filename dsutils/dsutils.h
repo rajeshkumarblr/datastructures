@@ -8,7 +8,6 @@ typedef bool optionCallback(unsigned int choice);
 typedef void (*callbackdriver)();
 
 struct option {
-	//std::string optionMsg;
 	const char* optionMsg;
 	callbackdriver driver;
 };

@@ -38,12 +38,12 @@ MakeDirCommand         :=makedir
 RcCmpOptions           := 
 RcCompilerName         :=D:/MinGW-4.8.1/bin/windres.exe 
 LinkOptions            :=  
-IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
+IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)../dsutils 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := 
-ArLibs                 :=  
-LibPath                := $(LibraryPathSwitch). 
+Libs                   := $(LibrarySwitch)dsutils 
+ArLibs                 :=  "dsutils" 
+LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../dsutils/Debug 
 
 ##
 ## Common variables
@@ -63,7 +63,7 @@ AS       := D:/MinGW-4.8.1/bin/as.exe
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
 UNIT_TEST_PP_SRC_DIR:=D:\UnitTest++-1.3
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/arrayops.cpp$(ObjectSuffix) $(IntermediateDirectory)/utils.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/arrayops.cpp$(ObjectSuffix) 
 
 
 
@@ -75,11 +75,18 @@ Objects=$(Objects0)
 .PHONY: all clean PreBuild PrePreBuild PostBuild
 all: $(OutputFile)
 
-$(OutputFile): $(IntermediateDirectory)/.d $(Objects) 
+$(OutputFile): $(IntermediateDirectory)/.d "..\.build-debug\dsutils" $(Objects) 
 	@$(MakeDirCommand) $(@D)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
+
+"..\.build-debug\dsutils":
+	@$(MakeDirCommand) "..\.build-debug"
+	@echo stam > "..\.build-debug\dsutils"
+
+
+
 
 $(IntermediateDirectory)/.d:
 	@$(MakeDirCommand) "./Debug"
@@ -105,14 +112,6 @@ $(IntermediateDirectory)/arrayops.cpp$(DependSuffix): arrayops.cpp
 
 $(IntermediateDirectory)/arrayops.cpp$(PreprocessSuffix): arrayops.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/arrayops.cpp$(PreprocessSuffix) "arrayops.cpp"
-
-$(IntermediateDirectory)/utils.cpp$(ObjectSuffix): utils.cpp $(IntermediateDirectory)/utils.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/myworkspace/Arrays/utils.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/utils.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/utils.cpp$(DependSuffix): utils.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/utils.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/utils.cpp$(DependSuffix) -MM "utils.cpp"
-
-$(IntermediateDirectory)/utils.cpp$(PreprocessSuffix): utils.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/utils.cpp$(PreprocessSuffix) "utils.cpp"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

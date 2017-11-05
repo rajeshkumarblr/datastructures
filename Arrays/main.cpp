@@ -1,13 +1,13 @@
-#include "arrayops.h"
-#include "utils.h"
-#include "stdlib.h"
-#include "stdio.h"
+#include <stdlib.h>
+#include <stdio.h>
 #include <iostream>
 #include <map>
+#include "arrayops.h"
+#include "dsutils.h"
 
 using namespace std;
 
-static int* arr;
+static int* arr;	
 int n;
 
 void printArrayDriver() {
@@ -95,7 +95,6 @@ static vector<option>  options {
 	{ "Reverse Array", reverseArrayDriver },
 	{ "Arrange Min Max elements",arrangeMinMaxDriver},
 	{ "Swap alternate elements",swapAlternateElementsDriver},
-	{ "Exit", exitDriver }
 };
 
 

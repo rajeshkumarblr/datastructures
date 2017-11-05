@@ -1,1 +1,1 @@
-./Debug/main.cpp.o ./Debug/count1s.cpp.o   
+./Debug/main.cpp.o ./Debug/bitops.cpp.o   

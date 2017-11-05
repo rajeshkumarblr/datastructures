@@ -5,7 +5,7 @@
 ## Debug
 ProjectName            :=bitmanip
 ConfigurationName      :=Debug
-WorkspacePath          := "D:\myworkspace\bitmanip"
+WorkspacePath          := "D:\myworkspace"
 ProjectPath            := "D:\myworkspace\bitmanip"
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=rthandap
-Date                   :=11/03/17
+Date                   :=11/05/17
 CodeLitePath           :="D:\Program Files (x86)\CodeLite"
 LinkerName             :=D:/MinGW-4.8.1/bin/g++.exe 
 SharedObjectLinkerName :=D:/MinGW-4.8.1/bin/g++.exe -shared -fPIC
@@ -38,12 +38,12 @@ MakeDirCommand         :=makedir
 RcCmpOptions           := 
 RcCompilerName         :=D:/MinGW-4.8.1/bin/windres.exe 
 LinkOptions            :=  
-IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
+IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)../dsutils 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := 
-ArLibs                 :=  
-LibPath                := $(LibraryPathSwitch). 
+Libs                   := $(LibrarySwitch)dsutils 
+ArLibs                 :=  "dsutils" 
+LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../dsutils/Debug 
 
 ##
 ## Common variables
@@ -52,7 +52,7 @@ LibPath                := $(LibraryPathSwitch).
 AR       := D:/MinGW-4.8.1/bin/ar.exe rcu
 CXX      := D:/MinGW-4.8.1/bin/g++.exe 
 CC       := D:/MinGW-4.8.1/bin/gcc.exe 
-CXXFLAGS :=  -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -g -O0 -Wall -std=c++11 $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := D:/MinGW-4.8.1/bin/as.exe 
@@ -63,7 +63,7 @@ AS       := D:/MinGW-4.8.1/bin/as.exe
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
 UNIT_TEST_PP_SRC_DIR:=D:\UnitTest++-1.3
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/count1s.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/bitops.cpp$(ObjectSuffix) 
 
 
 
@@ -75,11 +75,18 @@ Objects=$(Objects0)
 .PHONY: all clean PreBuild PrePreBuild PostBuild
 all: $(OutputFile)
 
-$(OutputFile): $(IntermediateDirectory)/.d $(Objects) 
+$(OutputFile): $(IntermediateDirectory)/.d "..\.build-debug\dsutils" $(Objects) 
 	@$(MakeDirCommand) $(@D)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
+
+"..\.build-debug\dsutils":
+	@$(MakeDirCommand) "..\.build-debug"
+	@echo stam > "..\.build-debug\dsutils"
+
+
+
 
 $(IntermediateDirectory)/.d:
 	@$(MakeDirCommand) "./Debug"
@@ -98,13 +105,13 @@ $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) "main.cpp"
 
-$(IntermediateDirectory)/count1s.cpp$(ObjectSuffix): count1s.cpp $(IntermediateDirectory)/count1s.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/myworkspace/bitmanip/count1s.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/count1s.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/count1s.cpp$(DependSuffix): count1s.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/count1s.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/count1s.cpp$(DependSuffix) -MM "count1s.cpp"
+$(IntermediateDirectory)/bitops.cpp$(ObjectSuffix): bitops.cpp $(IntermediateDirectory)/bitops.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/myworkspace/bitmanip/bitops.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/bitops.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/bitops.cpp$(DependSuffix): bitops.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/bitops.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/bitops.cpp$(DependSuffix) -MM "bitops.cpp"
 
-$(IntermediateDirectory)/count1s.cpp$(PreprocessSuffix): count1s.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/count1s.cpp$(PreprocessSuffix) "count1s.cpp"
+$(IntermediateDirectory)/bitops.cpp$(PreprocessSuffix): bitops.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/bitops.cpp$(PreprocessSuffix) "bitops.cpp"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
@@ -116,6 +123,6 @@ clean:
 	$(RM) ./Debug/*$(DependSuffix)
 	$(RM) $(OutputFile)
 	$(RM) $(OutputFile).exe
-	$(RM) ".build-debug/bitmanip"
+	$(RM) "../.build-debug/bitmanip"
 
 
