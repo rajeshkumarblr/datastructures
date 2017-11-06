@@ -57,8 +57,6 @@ void rotateArrayDriver() {
 	rotateArray(arr, n,shift);	
 }
 
-
-
 void findMinElementDriver() {
 	int ind = findMinElementInRotatedSortedArray(arr, n);
 	cout << "min index of the array:" << ind << endl;
@@ -80,10 +78,6 @@ void arrangeMinMaxDriver() {
 void swapAlternateElementsDriver() {
 	swapAlternate(arr,n);
 	printArray("swapped",arr,n);
-}
-
-void exitDriver() {
-	exit(0);
 }
 
 static vector<option>  options {

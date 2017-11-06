@@ -5,8 +5,10 @@ LinkedList::LinkedList(int min, int max, int incr):LinkedList() {
         addNode(i);
     }
 }
+
 LinkedList::LinkedList(std::string& str):LinkedList() {
-    for (int i=0; i<str.size();i++) {
+	isStringList = true;
+    for (unsigned int i=0; i<str.size();i++) {
         addNode(str[i]);
     }
 }
@@ -85,7 +87,17 @@ Node* LinkedList::getMiddleNode() {
 void LinkedList::printList() {
     Node* node = head;
     while (node) {
-        cout<< node->data;
+		if (isStringList) {
+			cout<< (char) node->data;
+		} else {
+			cout<< node->data;
+		}
+		
+		if (node->next == head) {
+			cout << "Loop detected" << endl;
+			break;
+		}
+		
         if (node->next) {
             cout << "->";
         }
@@ -103,6 +115,7 @@ void LinkedList::printList(int cnt) {
             cout << "->";
         }
         node = node->next;
+		i++;
     }
     cout << endl;
 }
@@ -130,31 +143,4 @@ void LinkedList::deleteNode(int data) {
         }
     }
 }
-
-void LinkedList::createLoop() {
-    Node* mid = getMiddleNode();
-    Node* tail = getTail();
-    if (tail) {
-        tail->next = mid;
-    }
-}
-
-bool LinkedList::isLoopDetected() {
-    if (head == NULL) {
-        return false;
-    }
-    bool isLoopFound = false;
-    Node *slow = head;
-    Node* fast = head->next;
-    while (fast && fast->next) {
-        slow = slow->next;
-        fast = fast->next->next;
-        if (slow == fast) {
-            isLoopFound = true;
-            break;
-        }
-    }
-    return isLoopFound;
-}
-
 

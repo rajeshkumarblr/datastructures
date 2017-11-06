@@ -22,6 +22,7 @@ class LinkedList
 {
     private:
         Node *head;
+		bool isStringList;
 
         inline Node* getHead() {
             return head;
@@ -36,6 +37,7 @@ class LinkedList
     public:
         inline LinkedList() {
             head = NULL;
+			isStringList = false;
         }
         LinkedList(int min, int max, int incr);
         LinkedList(std::string& str);
@@ -48,6 +50,16 @@ class LinkedList
             this->head = list.head;
         }
 
+		inline int getSize() {
+			int size = 0;
+			Node* node = head;
+            while (node) {
+                node = node->next;
+				size++;
+            }
+			return size;
+		}
+		
         void addNode(int data);
         void deleteNode(int data);
 
@@ -58,17 +70,28 @@ class LinkedList
 
         /*Palindrome functions*/
         bool isPalindrome();
-        Node* reverseList();
 
         /*Loop functions*/
-        void createLoop();
+        void createLoop(int elem);
         bool isLoopDetected();
 
         /* Merge functions*/
-        void mergeList(LinkedList& list2);
+        void mergeList(LinkedList* list2);
+        void mergeListRecursive(LinkedList* list2);
+		
         void swapAdjacentNodes();
+		
+		void reverseList();
 
 };
 
+extern LinkedList* list;
+
+LinkedList* createListDriverHelper(bool isMergeList=true);
+void createListDriver();
+void mergeListDriver();
+
+void createLoopDriver();
+void checkLoopDriver();
 
 #endif

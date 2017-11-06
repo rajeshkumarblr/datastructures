@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="datastructures" Database="/myworkspace/.codelite/datastructures.tags">
-  <Project Name="list" Path="LinkedList/list.project" Active="No"/>
+  <Project Name="list" Path="LinkedList/list.project" Active="Yes"/>
   <Project Name="Arrays" Path="Arrays/Arrays.project" Active="No"/>
-  <Project Name="bitmanip" Path="bitmanip/bitmanip.project" Active="Yes"/>
+  <Project Name="bitmanip" Path="bitmanip/bitmanip.project" Active="No"/>
   <Project Name="dsutils" Path="dsutils/dsutils.project"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
