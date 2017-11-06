@@ -4,18 +4,21 @@
   <Project Name="Arrays" Path="Arrays/Arrays.project" Active="No"/>
   <Project Name="bitmanip" Path="bitmanip/bitmanip.project" Active="No"/>
   <Project Name="dsutils" Path="dsutils/dsutils.project"/>
+  <Project Name="stack" Path="stack/stack.project"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Project Name="list" ConfigName="Debug"/>
       <Project Name="Arrays" ConfigName="Debug"/>
       <Project Name="bitmanip" ConfigName="Debug"/>
       <Project Name="dsutils" ConfigName="Debug"/>
+      <Project Name="stack" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="list" ConfigName="Release"/>
       <Project Name="Arrays" ConfigName="Release"/>
       <Project Name="bitmanip" ConfigName="Release"/>
       <Project Name="dsutils" ConfigName="Release"/>
+      <Project Name="stack" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

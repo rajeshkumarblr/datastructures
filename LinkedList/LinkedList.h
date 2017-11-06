@@ -76,12 +76,12 @@ class LinkedList
         bool isLoopDetected();
 
         /* Merge functions*/
-        void mergeList(LinkedList* list2);
-        void mergeListRecursive(LinkedList* list2);
+        void mergeList(LinkedList* list2, bool isIterative= true);
 		
         void swapAdjacentNodes();
 		
 		void reverseList();
+		friend void mergeListDriver();
 
 };
 

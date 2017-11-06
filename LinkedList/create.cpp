@@ -14,7 +14,7 @@ LinkedList* createListDriverHelper(bool isMergeList) {
 	switch (choice) {
 		case 1: {
 			int min, max, incr;
-			cout << "Enter the range of array (first last step)" << endl;
+			cout << "  Enter the range of array (first last step)" << endl;
 			cin >> min >> max >> incr;
 			clearinput();
 			list = new LinkedList(min,max,incr);
@@ -22,7 +22,7 @@ LinkedList* createListDriverHelper(bool isMergeList) {
 		}
 		case 2: {
 			string str;
-			cout << "Enter the string to create the list" << endl;
+			cout << "  Enter the string to create the list" << endl;
 			cin >> str;
 			clearinput();
 			list = new LinkedList(str);
@@ -30,7 +30,7 @@ LinkedList* createListDriverHelper(bool isMergeList) {
 		}
 		case 3: {
 			int num;
-			cout << "Enter the number of elements in list" << endl;
+			cout << "  Enter the number of elements in list" << endl;
 			cin >> num;
 			int* elements = new int[num];
 			for (int i=0; i<num; i++) {
