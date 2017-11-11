@@ -14,9 +14,9 @@ void clearinput() {
 	fflush(stdin);
 }
 
-void displaymenu(std::vector<option>& options) {
+void displaymenu(std::vector<Option>& options) {
 	cls();
-	vector<option>::iterator it = options.begin();
+	vector<Option>::iterator it = options.begin();
 	int i = 0;
 	while (it != options.end()) {
 		cout << i++ << ":" << it->optionMsg << endl; 
@@ -29,22 +29,46 @@ void exitDriver() {
 	exit(0);
 }
 
-option exitOption = {"Exit", exitDriver};
+Option exitOption = {"Exit", exitDriver};
 
-void mainloop(std::vector<option>& options,callbackdriver defaultDriver) {
+Option returnMenuOption = {"Return to Previous Menu", NULL};
+
+vector<SubMenu> fullMenu;
+
+int menuIndex = 0;
+
+void menuloop(SubMenu subMenu) {	
 	unsigned int choice = 0;
-	options.insert(options.begin(), exitOption);
-	displaymenu(options);
-
-	defaultDriver();
+	
+	if (menuIndex == 0) {
+		subMenu.options.insert(subMenu.options.begin(), exitOption);
+		menuIndex++;
+	} else {
+		subMenu.options.insert(subMenu.options.begin(), returnMenuOption);
+	}
+	fullMenu.push_back(subMenu);
+	callbackdriver defaultDriver = subMenu.defaultDriver;
 	do {
-		cout << "\nEnter your choice for next operation:" << endl;
+		SubMenu& menu = fullMenu[menuIndex];
+		cls();
+		displaymenu(subMenu.options);
+		if (defaultDriver) {
+			defaultDriver();
+		}
+		cout << "\nEnter your choice:" << endl;
 		cin >> choice;
 		clearinput();
-		if (choice <= options.size()) {
-			option opt = options[choice];
+		if (choice < subMenu.options.size()) {
+			cout << "your choice:" << subMenu.options[choice].optionMsg << endl;
+			Option& opt = subMenu.options[choice];
 			opt.driver();
 		}
-		defaultDriver();
-	} while (true);
+		clearinput();
+		if (choice == 0 && (menuIndex>0)) {
+			fullMenu.pop_back();
+		}
+		cin.get();
+	} while (choice > 0);
+	
+	
 }

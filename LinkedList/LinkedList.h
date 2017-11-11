@@ -22,8 +22,9 @@ class LinkedList
 {
     private:
         Node *head;
-		bool isStringList;
+		//bool isStringList;
 
+    public:
         inline Node* getHead() {
             return head;
         }
@@ -34,17 +35,17 @@ class LinkedList
             }
             return tail;
         }
-    public:
+		
         inline LinkedList() {
             head = NULL;
-			isStringList = false;
         }
         LinkedList(int min, int max, int incr);
         LinkedList(std::string& str);
-        LinkedList(int num, ...);
+        //LinkedList(int num, ...);
+		LinkedList(int val);
         LinkedList(int arr[], int size);
         LinkedList(LinkedList& list) {
-            this->head = NULL;
+            this->head = list.getHead();
         }
         void operator = (LinkedList& list) {
             this->head = list.head;
@@ -63,8 +64,10 @@ class LinkedList
         void addNode(int data);
         void deleteNode(int data);
 
-        void printList();
+        void printList(bool isChar = false);
         void printList(int cnt);
+        void printList(Node* head);
+		
         Node* getMiddleNode();
         Node* getNodeFromEnd(int n);
 
@@ -82,16 +85,23 @@ class LinkedList
 		
 		void reverseList();
 		friend void mergeListDriver();
+		
+		LinkedList* addList(LinkedList* list2);
 
 };
 
 extern LinkedList* list;
 
-LinkedList* createListDriverHelper(bool isMergeList=true);
 void createListDriver();
+LinkedList* createListDriverHelper();
 void mergeListDriver();
 
 void createLoopDriver();
 void checkLoopDriver();
+
+void reverseListDriver();
+void checkPalindromeDriver();
+void swapAdjacentNodesDriver();
+void addListDriver();
 
 #endif

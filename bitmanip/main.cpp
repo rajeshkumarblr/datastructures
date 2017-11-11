@@ -49,6 +49,6 @@ static vector<option>  options {
 int main(int argc, char **argv)
 {
 	val = 0xABCD;
-	mainloop(options,printValueDriver);
+	menuloop(options,printValueDriver);
 	return 0;
 }

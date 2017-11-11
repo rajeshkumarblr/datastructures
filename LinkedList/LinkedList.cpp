@@ -1,35 +1,5 @@
 #include "LinkedList.h"
 
-LinkedList::LinkedList(int min, int max, int incr):LinkedList() {
-    for (int i=min; i<=max; i+= incr) {
-        addNode(i);
-    }
-}
-
-LinkedList::LinkedList(std::string& str):LinkedList() {
-	isStringList = true;
-    for (unsigned int i=0; i<str.size();i++) {
-        addNode(str[i]);
-    }
-}
-
-LinkedList::LinkedList(int num, ...):LinkedList() {
-    va_list arguments;                     
-
-    va_start ( arguments, num );           
-    for ( int x = 0; x < num; x++ )        
-    {
-        int val = va_arg ( arguments, int ); 
-        addNode(val);
-    }
-    va_end ( arguments );                  // Cleans up the list
-}
-
-LinkedList::LinkedList(int arr[], int size):LinkedList() {
-    for (int i=0; i<size;i++) {
-        addNode(arr[i]);
-    }
-}
 
 
 void LinkedList::addNode(int data) {
@@ -84,10 +54,10 @@ Node* LinkedList::getMiddleNode() {
     return slowPtr;
 }
 
-void LinkedList::printList() {
+void LinkedList::printList(bool isChar) {
     Node* node = head;
     while (node) {
-		if (isStringList) {
+		if (isChar) {
 			cout<< (char) node->data;
 		} else {
 			cout<< node->data;

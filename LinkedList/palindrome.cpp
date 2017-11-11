@@ -34,4 +34,12 @@ bool LinkedList::isPalindrome() {
     return isPalindrome;
 }
 
+void checkPalindromeDriver() {
+	if (list->isPalindrome()) {
+		cout << "List is a Palindrome" << endl;
+	} else {
+		cout << "List is NOT a Palindrome" << endl;
+	}
+}
+
 

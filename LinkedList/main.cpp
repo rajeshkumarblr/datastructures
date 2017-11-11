@@ -13,24 +13,6 @@ void printListDriver() {
 	list->printList();
 }
 
-void reverseListDriver() {
-	list->reverseList();
-}
-
-void checkPalindromeDriver() {
-	if (list->isPalindrome()) {
-		cout << "List is a Palindrome" << endl;
-	} else {
-		cout << "List is NOT a Palindrome" << endl;
-	}
-}
-
-
-void swapAdjacentNodesDriver() {
-    list->swapAdjacentNodes();
-}
-
-
 static vector<option>  options {
 	{ "Create List", createListDriver },
 	{ "Reverse List", reverseListDriver },
@@ -39,11 +21,13 @@ static vector<option>  options {
 	{ "Create Loop in List", createLoopDriver},
 	{ "Check if Loop is detected", checkLoopDriver},
 	{ "Merge List", mergeListDriver },
+	{ "Add with another List", addListDriver },
 };
 
 int main(int argc, char **argv) {
-	list = new LinkedList(10,80,10);
-	mainloop(options,printListDriver);
+	//list = new LinkedList(10,80,10);
+	list = new LinkedList(12345);
+	menuloop(options,printListDriver);
 	return 0;
 }
 

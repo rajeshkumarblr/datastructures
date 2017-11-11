@@ -15,5 +15,15 @@ int binarySearchSortedArray(int a[], int n, int val);
 int findMinElementInRotatedSortedArray(int a[], int n);
 int binarySearchSortedRotatedArray(int a[], int n, int val);
 void reverseArray(int a[], int n);
+bool isRotatedSortedArray(int a[], int n);
+
+void createArrayDriver();
+void searchArrayDriver();
+void rotatedSearchArrayDriver();
+void rotateArrayDriver();
+void findMinElementDriver();
+
+extern int* arr;
+extern int n;
 
 #endif

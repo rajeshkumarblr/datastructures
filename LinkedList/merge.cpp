@@ -56,7 +56,7 @@ void LinkedList::mergeList(LinkedList* other,bool isIterative)
 
 void mergeListDriver() {
 	int choice;
-	LinkedList* list2 = createListDriverHelper(true);
+	LinkedList* list2 = createListDriverHelper();
 	cout << "Created list:" << endl;
 	list2->printList();
 	cout << "  Enter your choice of method for merge lists" << endl;

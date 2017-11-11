@@ -1,51 +1,10 @@
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stack>
 #include "arrayops.h"
 
-int createArray(int** arr, int st, int end, int incr) {
-	int size =  (end - st) / incr + 1;
-	if (*arr) {
-		delete[] arr;
-	}
-	*arr = new int[size];
-	int val = st;
-	for (int i=0; i<size; i++) {
-		(*arr)[i]= val;
-		val += incr;
-	}
-	return size;
-}
-
-int* arrangeMinMaxCopy(int* arr, int size) {
-	int *newarr = new int[size];
-	if (newarr != NULL) {
-		int j = size -1;	
-		int k = 0;
-		for (int i= 0; i<size; i++) {
-			if ((i%2)==0) {
-				newarr[i] = arr[j--];
-			} else { 
-				newarr[i] = arr[k++];
-			}
-		}
-	}
-	return newarr;
-}
-
-/* input:   10,20,30,40,50,60,70,80,90,100
- * swapped: 20,10,40,30,60,50,80,70,100,90 */
-void swapAlternate(int* a, int n) {
-	if (n < 2) {
-	  return;
-	}
-	for (int i=0; i<n-1; i+=2) {
-		int tmp=a[i];
-		a[i]=a[i+1];
-		a[i+1] = tmp;
-	}
-}
-
+using namespace std;
 
 /* input:10,20,30,40,50,60,70,80,90,100
  * rearranged:100,10,90,20,80,30,70,40,60,50 */
@@ -85,7 +44,7 @@ void printArray(const char* msg, int arr[], int n) {
 		printf("%d,",arr[i]);
 	}
 	printf("%d",arr[n-1]);
-	printf("\n");
+	cout << endl;
 }
 
 // val: 10 20 30 40 50 60 70 80
@@ -142,7 +101,7 @@ int binarySearchSortedRotatedArray(int a[], int n, int val) {
 }
 
 /** helper function for findMinElementInRotatedSortedArray */
-inline bool isRotatedSortedArray(int a[], int n) {
+bool isRotatedSortedArray(int a[], int n) {
 	if (a[0] > a[n-1]) {
 		return true;
 	} else {
@@ -150,49 +109,14 @@ inline bool isRotatedSortedArray(int a[], int n) {
 	}	
 }
 
-/** 
- * Objective: Find the pivot element of a rotated sorted array using binary search
- * Example:
- * input: 8 9 1 2 3 4 5 6 7
-  * return index of the min element 1: 2
-  * or return -1 if the array is not rotated.
- * Speed: O(log(n))
- **/
 
-int findMinElementInRotatedSortedArray(int a[], int n) {
-	// First check if the array is really rotated (assuming the array is sorted already)
-	if (!isRotatedSortedArray(a, n)) {
-		return -1;
-	}
-	/* Dry run:
-	 *  arr: 70  80  10    20     30 40 50 60
-	 *    (l) 0  1    2    3(m)    4  5  6  7 (r)
-	 *    (l) 0  1(m) 2    3(r)
-	 *        0  1    2(l) 3(r)
-	 *  0  1   
-	 */
-
-	int l = 0;
-	int r = n-1;
-	while (a[l] > a[r]) {
-		int m = (l + r) / 2;
-		if (a[m] > a[r]) {
-			l = m + 1;
-		} else {
-			r  = m;
-		}
-	}
-	return l;
-}
-
-// 10 20 30 40 50 60
+// 10 20 30 40 50 60 
 // 60 50 40 30 20 10
 void reverseArray(int a[], int n) {	
 	int mid = n/2;
-	int j = n -1;
 	for (int i=0; i<mid; i++) {
 		int tmp=a[i];
-		a[i] = a[j];
-		a[j--]=tmp;
+		a[i] = a[n-1-i];
+		a[n-1-i]=tmp;
 	}
 }

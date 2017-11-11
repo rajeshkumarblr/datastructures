@@ -14,3 +14,6 @@ void LinkedList::reverseList() {
     head = prev;
 }
 
+void reverseListDriver() {
+	list->reverseList();
+}
