@@ -15,16 +15,11 @@ void printArrayDriver() {
 	printArray("current",arr,n);
 }
 
-
 static Option menuoptions[] =  {
 	{ "Create", createArrayDriver },
 	{ "Rotate", rotateArrayDriver },
-	{ "Search", searchArrayDriver },
-	{ "Search Rotated Array", rotatedSearchArrayDriver }, 
-	{ "Find Min element in Rotated Array", findMinElementDriver },
-	{ "Reverse", reverseArrayDriver },
-	{ "Arrange Min Max elements",arrangeMinMaxDriver},
-	{ "Swap alternate elements",swapAlternateElementsDriver},
+	{ "Search", searchArrayDriver},
+	{ "Arrange", arrangeArrayDriver },
 };
 
 int main(int argc, char **argv) {

@@ -1,11 +1,28 @@
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 
-int abc() {
-	return 15;
-}
-
-int main(int argc, char **argv)
+class A
 {
-	abc();
-	return 0;
+	public:
+		A() {}
+		virtual ~A(){
+					cout << "base class destructor" << endl;
+		}
+};
+
+class B: public A
+{
+	public:
+		B():A(){}
+		
+	~B(){
+		cout << "derived class destructor" << endl;
+	}
+};
+
+int main(void)
+{
+  A* a = new B();
+  delete a;
+  getchar();
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "arrayops.h"
+#include <stack>
 #include "dsutils.h"
 
 int* arrangeMinMaxCopy(int* arr, int size) {
@@ -16,6 +17,24 @@ int* arrangeMinMaxCopy(int* arr, int size) {
 		}
 	}
 	return newarr;
+}
+
+/* input:10,20,30,40,50,60,70,80,90,100
+ * rearranged:100,10,90,20,80,30,70,40,60,50 */
+void arrangeMinMax(int* arr, int size) {
+	int mid = size/2;
+	std::stack<int> st;
+	
+	for (int i= (size%2)?mid+1:mid; i<size; i++) {
+		st.push(arr[i]);
+	}
+	for (int i=size-1;i>=1;i-=2) {
+		arr[i]=arr[(i-1)/2];
+	}
+	for (int i=0; i<size;i+=2) {
+		arr[i] = st.top();
+		st.pop();
+	}
 }
 
 /* input:   10,20,30,40,50,60,70,80,90,100
@@ -36,7 +55,12 @@ void reverseArrayDriver() {
 	printArray("reversed",arr,n);
 }
 
-void arrangeMinMaxDriver() {
+void swapAlternateElementsDriver() {
+	swapAlternate(arr,n);
+	printArray("swapped",arr,n);
+}
+
+void arrangeArrayDriver() {
 	//arrangeMinMax(arr,n);
 	int* tmp = arrangeMinMaxCopy(arr,n);
 	delete[] arr;
@@ -44,7 +68,3 @@ void arrangeMinMaxDriver() {
 	printArray("rearranged",arr,n);
 }
 
-void swapAlternateElementsDriver() {
-	swapAlternate(arr,n);
-	printArray("swapped",arr,n);
-}

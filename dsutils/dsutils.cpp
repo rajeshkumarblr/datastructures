@@ -5,11 +5,14 @@
 
 using namespace std;
 
-void cls() {
-	system("cls");
+void cls() {	
+	//system("cls");
+	//system("clear");
+	cout << "\033[2J\033[1;1H";
 }
 
 void clearinput() {
+	cin.ignore(INT32_MAX, '\n');
 	cin.clear();
 	fflush(stdin);
 }
@@ -29,13 +32,21 @@ void exitDriver() {
 	exit(0);
 }
 
+void waitForEnterKey() {
+	cout << "\npress Enter key to continue..\n";
+	clearinput();
+	char ch;
+	do {
+		ch = cin.get();
+	} while(ch != '\n');
+}
+
 Option exitOption = {"Exit", exitDriver};
 
 Option returnMenuOption = {"Return to Previous Menu", NULL};
 
-vector<SubMenu> fullMenu;
-
 int menuIndex = 0;
+
 
 void menuloop(SubMenu subMenu) {	
 	unsigned int choice = 0;
@@ -46,10 +57,8 @@ void menuloop(SubMenu subMenu) {
 	} else {
 		subMenu.options.insert(subMenu.options.begin(), returnMenuOption);
 	}
-	fullMenu.push_back(subMenu);
 	callbackdriver defaultDriver = subMenu.defaultDriver;
 	do {
-		SubMenu& menu = fullMenu[menuIndex];
 		cls();
 		displaymenu(subMenu.options);
 		if (defaultDriver) {
@@ -58,16 +67,16 @@ void menuloop(SubMenu subMenu) {
 		cout << "\nEnter your choice:" << endl;
 		cin >> choice;
 		clearinput();
+		if ((choice == 0) && (menuIndex > 0)) {
+			menuIndex--;
+			return;
+		}
 		if (choice < subMenu.options.size()) {
-			cout << "your choice:" << subMenu.options[choice].optionMsg << endl;
+			cout << "your choice is: " << subMenu.options[choice].optionMsg << endl << endl;
 			Option& opt = subMenu.options[choice];
 			opt.driver();
 		}
-		clearinput();
-		if (choice == 0 && (menuIndex>0)) {
-			fullMenu.pop_back();
-		}
-		cin.get();
+		waitForEnterKey();
 	} while (choice > 0);
 	
 	

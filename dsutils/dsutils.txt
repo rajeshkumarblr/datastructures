@@ -1,1 +1,1 @@
-./Debug/dsutils.cpp.o   
+./Debug/dsutils.cpp.o

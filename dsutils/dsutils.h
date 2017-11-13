@@ -21,7 +21,7 @@ void cls();
 void clearinput();
 void displaymenu(std::vector<std::string>& options);
 void menuloop(SubMenu menu);
-void arrangeMinMaxDriver();
+void arrangeArrayDriver();
 void swapAlternateElementsDriver();
 void reverseArrayDriver();
 

@@ -1,1 +1,1 @@
-./Debug/main.cpp.o ./Debug/arrayops.cpp.o ./Debug/sort.cpp.o ./Debug/create.cpp.o ./Debug/search.cpp.o ./Debug/arrange.cpp.o ./Debug/rotate.cpp.o   
+./Debug/main.cpp.o ./Debug/arrayops.cpp.o ./Debug/sort.cpp.o ./Debug/create.cpp.o ./Debug/search.cpp.o ./Debug/arrange.cpp.o ./Debug/rotate.cpp.o

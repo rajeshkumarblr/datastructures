@@ -22,6 +22,7 @@ void searchArrayDriver();
 void rotatedSearchArrayDriver();
 void rotateArrayDriver();
 void findMinElementDriver();
+void printArrayDriver();
 
 extern int* arr;
 extern int n;

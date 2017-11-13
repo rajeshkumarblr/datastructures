@@ -5,18 +5,18 @@
 ## Debug
 ProjectName            :=dsutils
 ConfigurationName      :=Debug
-WorkspacePath          :=D:/myworkspace
-ProjectPath            :=D:/myworkspace/dsutils
+WorkspacePath          :=/home/rajesh/myworkspace/datastructures
+ProjectPath            :=/home/rajesh/myworkspace/datastructures/dsutils
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=rthandap
-Date                   :=11/11/2017
-CodeLitePath           :="D:/Program Files (x86)/CodeLite"
-LinkerName             :=D:/MinGW-4.8.1/bin/g++.exe
-SharedObjectLinkerName :=D:/MinGW-4.8.1/bin/g++.exe -shared -fPIC
+User                   :=Rajesh
+Date                   :=11/11/17
+CodeLitePath           :=/home/rajesh/.codelite
+LinkerName             :=/usr/bin/g++
+SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -34,9 +34,7 @@ ArchiveOutputSwitch    :=
 PreprocessOnlySwitch   :=-E
 ObjectsFileList        :="dsutils.txt"
 PCHCompileFlags        :=
-MakeDirCommand         :=makedir
-RcCmpOptions           := 
-RcCompilerName         :=D:/MinGW-4.8.1/bin/windres.exe
+MakeDirCommand         :=mkdir -p
 LinkOptions            :=  
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
@@ -49,20 +47,19 @@ LibPath                := $(LibraryPathSwitch).
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := D:/MinGW-4.8.1/bin/ar.exe rcu
-CXX      := D:/MinGW-4.8.1/bin/g++.exe
-CC       := D:/MinGW-4.8.1/bin/gcc.exe
+AR       := /usr/bin/ar rcu
+CXX      := /usr/bin/g++
+CC       := /usr/bin/gcc
 CXXFLAGS :=  -g $(Preprocessors)
 CFLAGS   :=  -g $(Preprocessors)
 ASFLAGS  := 
-AS       := D:/MinGW-4.8.1/bin/as.exe
+AS       := /usr/bin/as
 
 
 ##
 ## User defined environment variables
 ##
-CodeLiteDir:=C:\Program Files\CodeLite
-UNIT_TEST_PP_SRC_DIR:=D:\UnitTest++-1.3
+CodeLiteDir:=/usr/share/codelite
 Objects0=$(IntermediateDirectory)/dsutils.cpp$(ObjectSuffix) 
 
 
@@ -80,15 +77,15 @@ $(OutputFile): $(Objects)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(AR) $(ArchiveOutputSwitch)$(OutputFile) @$(ObjectsFileList) $(ArLibs)
-	@$(MakeDirCommand) "D:\myworkspace/.build-debug"
-	@echo rebuilt > "D:\myworkspace/.build-debug/dsutils"
+	@$(MakeDirCommand) "/home/rajesh/myworkspace/datastructures/.build-debug"
+	@echo rebuilt > "/home/rajesh/myworkspace/datastructures/.build-debug/dsutils"
 
 MakeIntermediateDirs:
-	@$(MakeDirCommand) "./Debug"
+	@test -d ./Debug || $(MakeDirCommand) ./Debug
 
 
 ./Debug:
-	@$(MakeDirCommand) "./Debug"
+	@test -d ./Debug || $(MakeDirCommand) ./Debug
 
 PreBuild:
 
@@ -97,7 +94,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/dsutils.cpp$(ObjectSuffix): dsutils.cpp $(IntermediateDirectory)/dsutils.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/myworkspace/dsutils/dsutils.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/dsutils.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/rajesh/myworkspace/datastructures/dsutils/dsutils.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/dsutils.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/dsutils.cpp$(DependSuffix): dsutils.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/dsutils.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/dsutils.cpp$(DependSuffix) -MM dsutils.cpp
 
