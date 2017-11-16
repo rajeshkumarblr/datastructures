@@ -68,7 +68,7 @@ bool isRotatedSortedArray(int a[], int n) {
 
 void searchElementDriver() {
 	int val;
-	cout << "Enter the element to search \n" ;
+	cout << "Enter the element to search:" ;
 	cin >> val;
 	int ind;
 	bool isRotated = isRotatedSortedArray(arr,n);
@@ -121,21 +121,45 @@ int findMinElementInRotatedSortedArray(int a[], int n) {
 }
 
 void findMinElementDriver() {
-	int ind = findMinElementInRotatedSortedArray(arr, n);
+	int ind;
+	if (isRotatedSortedArray(arr,n)) {
+		ind = findMinElementInRotatedSortedArray(arr, n);
+	} else {
+		ind = 0;
+	}
+	
 	cout << "min value: " << arr[ind] << " found at index:" << ind << endl;
 }
 
-static Option menuoptions[] =  {
-	{ "Search Element", searchElementDriver },
-	{ "Find Minimum element", findMinElementDriver },
+static vector<string> menuoptions =  {
+	"Return to main menu..",
+	"Search Element",
+	"Find Minimum element",
 };
 
 
 void searchArrayDriver() {
-	SubMenu menu;
-	menu.options.assign(menuoptions,menuoptions+SIZE(menuoptions));
-	menu.defaultDriver = printArrayDriver;
-	menuloop(menu);
+	int choice;
+	do {
+		printArrayDriver();
+		cout << ("  Search Menu:\n");
+		app->displayMenu(menuoptions);
+		cout << "Enter your choice:";
+		cin >> choice;
+		switch(choice) {
+			case 0:
+				return;
+			case 1:
+				searchElementDriver();
+				break;
+			case 2:
+				findMinElementDriver();
+				break;
+			default:
+				continue;
+		}
+		
+	} while (choice != 0);
 }
 
 

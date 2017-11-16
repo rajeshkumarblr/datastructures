@@ -16,9 +16,9 @@ void rotateArray(int arr[] , int n, int x) {
 
 void rotateArrayDriver() {
 	int shift;
-	cout << "Enter the number of times to rotate array \n";
+	cout << "Enter the number of times to rotate array:";
 	cin >> shift;	
 	rotateArray(arr, n,shift);	
-	printArray("rotated",arr,n);
+	printArray("rotated array",arr,n);
 }
 

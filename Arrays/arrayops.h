@@ -3,7 +3,7 @@
 
 #define SIZE(arr) (sizeof(arr)/sizeof(arr[0]))
 
-int createArray(int** arr, int st, int end, int incr);
+void createArray(int st, int end, int incr);
 
 int* arrangeMinMaxCopy(int* arr, int size);
 void arrangeMinMax(int* arr, int size);

@@ -1,7 +1,10 @@
 #include <iostream>
 #include "arrayops.h"
 #include <stack>
+#include <vector>
 #include "dsutils.h"
+
+using namespace std;
 
 int* arrangeMinMaxCopy(int* arr, int size) {
 	int *newarr = new int[size];
@@ -39,14 +42,15 @@ void arrangeMinMax(int* arr, int size) {
 
 /* input:   10,20,30,40,50,60,70,80,90,100
  * swapped: 20,10,40,30,60,50,80,70,100,90 */
-void swapAlternate(int* a, int n) {
+void swapAlternate() {
 	if (n < 2) {
 	  return;
 	}
+	int tmp;
 	for (int i=0; i<n-1; i+=2) {
-		int tmp=a[i];
-		a[i]=a[i+1];
-		a[i+1] = tmp;
+		int tmp=arr[i];
+		arr[i]=arr[i+1];
+		arr[i+1] = tmp;
 	}
 }
 
@@ -55,16 +59,49 @@ void reverseArrayDriver() {
 	printArray("reversed",arr,n);
 }
 
-void swapAlternateElementsDriver() {
-	swapAlternate(arr,n);
-	printArray("swapped",arr,n);
-}
+static vector<string> menuoptions =  {
+	"Return to main menu..",
+	"Arrange Elements in Min/Max pairs",
+	"Swap Alternate Elements",
+	"Reverse Array"
+};
 
-void arrangeArrayDriver() {
+void arrangeMinMaxDriver() {
 	//arrangeMinMax(arr,n);
 	int* tmp = arrangeMinMaxCopy(arr,n);
 	delete[] arr;
 	arr = tmp;
-	printArray("rearranged",arr,n);
+	
+}
+
+void arrangeArrayDriver() {
+	int choice;
+	do {
+		printArrayDriver();
+		cout << ("  Rearrange Menu:\n");
+		app->displayMenu(menuoptions);
+		cout << "Enter your choice:";
+		cin >> choice;
+		switch(choice) {
+			case 0:
+				return;
+			case 1:
+				arrangeMinMaxDriver();
+				printArray("Arranged in Min Max:",arr,n);
+				break;
+			case 2:
+				swapAlternate();
+				printArray("Swapped Alternate:",arr,n);
+				break;
+			case 3:
+				reverseArrayDriver();
+				printArray("Reversed:",arr,n);
+				break;
+			default:
+				continue;
+		}
+		
+	} while (choice != 0);
+
 }
 

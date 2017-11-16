@@ -3,26 +3,24 @@
 
 #include <string>
 #include <vector>
+#include <map>
+#include <stack>
 
-typedef bool optionCallback(unsigned int choice);
-typedef void (*callbackdriver)();
 
-struct Option {
-	std::string optionMsg;
-	callbackdriver driver;
+class ConsoleApp {
+	public:
+		void cls();
+		void clearinput();
+		void displayMenu(std::vector<std::string>&);
+		void waitForEnterKey();
 };
 
-struct SubMenu {
-	std::vector<Option> options;
-	callbackdriver defaultDriver;
-};
 
-void cls();
-void clearinput();
-void displaymenu(std::vector<std::string>& options);
-void menuloop(SubMenu menu);
+extern ConsoleApp* app;
+
 void arrangeArrayDriver();
 void swapAlternateElementsDriver();
 void reverseArrayDriver();
+void sortArrayDriver();
 
 #endif
