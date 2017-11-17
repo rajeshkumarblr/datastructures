@@ -37,8 +37,16 @@ void createArrayValues() {
 	printArray("created Array:",arr,n);
 }
 
+void createArrayRandom(int num, int min, int max) {
+	allocateArray(num);
+	srandom(time(NULL));
+	double mul = ((max - min) / (double) RAND_MAX);
+	for (int i=0; i< num; i++) {
+		arr[i] = min + (rand() * mul);
+	}
+}
 
-void createArrayRandom() {
+void createArrayRandomDriver() {
 	int start, end, incr, num;
 	cout << "Create array with random elements:" << endl;
 	cout << "Enter the number of elements:";
@@ -46,12 +54,7 @@ void createArrayRandom() {
 	cout << " Enter the range (start end):";
 	cin >> start >> end;
 	cout << "Entered range is: (" << start << " - " << end << "). number of elements: " << num << endl;
-	allocateArray(num);
-	srandom(time(NULL));
-	double mul = ((end - start) / (double) RAND_MAX);
-	for (int i=0; i< num; i++) {
-		arr[i] = start + (rand() * mul);
-	}
+	createArrayRandom(num, start, end);
 	printArray("created Array:",arr,n);
 }
 
@@ -90,7 +93,7 @@ void createArrayDriver() {
 				createArrayRange();
 				break;
 			case 2:
-				createArrayRandom();
+				createArrayRandomDriver();
 				break;
 			case 3:
 				createArrayValues();

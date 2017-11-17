@@ -16,6 +16,7 @@ int findMinElementInRotatedSortedArray(int a[], int n);
 int binarySearchSortedRotatedArray(int a[], int n, int val);
 void reverseArray(int a[], int n);
 bool isRotatedSortedArray(int a[], int n);
+void createArrayRandom(int num, int min, int max);
 
 void createArrayDriver();
 void searchArrayDriver();

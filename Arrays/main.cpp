@@ -23,7 +23,8 @@ static vector<string> menuoptions = {
 int main(int argc, char** argv)
 {
     app = new ConsoleApp();
-    createArray(10, 80, 10);
+    //createArray(10, 80, 10);
+	createArrayRandom(10,10,100);
     int choice;
     do {
 		printArrayDriver();
