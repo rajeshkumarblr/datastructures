@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="datastructures" Database="/myworkspace/.codelite/datastructures.tags" Version="10.0.0">
-  <Project Name="list" Path="LinkedList/list.project" Active="No"/>
-  <Project Name="Arrays" Path="Arrays/Arrays.project" Active="Yes"/>
+  <Project Name="list" Path="LinkedList/list.project" Active="Yes"/>
+  <Project Name="Arrays" Path="Arrays/Arrays.project" Active="No"/>
   <Project Name="bitmanip" Path="bitmanip/bitmanip.project" Active="No"/>
   <Project Name="dsutils" Path="dsutils/dsutils.project" Active="No"/>
   <Project Name="stack" Path="stack/stack.project" Active="No"/>
   <Project Name="test" Path="test/test.project" Active="No"/>
   <Project Name="btree" Path="btree/btree.project" Active="No"/>
   <Project Name="permutation" Path="permutation/permutation.project" Active="No"/>
+  <Project Name="algos" Path="algos/algos.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
       <Project Name="list" ConfigName="Debug"/>
       <Project Name="Arrays" ConfigName="Debug"/>
       <Project Name="bitmanip" ConfigName="Debug"/>
@@ -18,8 +20,10 @@
       <Project Name="test" ConfigName="Debug"/>
       <Project Name="btree" ConfigName="Debug"/>
       <Project Name="permutation" ConfigName="Debug"/>
+      <Project Name="algos" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
       <Project Name="list" ConfigName="Release"/>
       <Project Name="Arrays" ConfigName="Release"/>
       <Project Name="bitmanip" ConfigName="Release"/>
@@ -28,6 +32,7 @@
       <Project Name="test" ConfigName="Release"/>
       <Project Name="btree" ConfigName="Release"/>
       <Project Name="permutation" ConfigName="Release"/>
+      <Project Name="algos" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

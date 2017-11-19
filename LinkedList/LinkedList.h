@@ -22,7 +22,7 @@ class LinkedList
 {
     private:
         Node *head;
-		//bool isStringList;
+		bool isStringList;
 
     public:
         inline Node* getHead() {
@@ -38,6 +38,7 @@ class LinkedList
 		
         inline LinkedList() {
             head = NULL;
+			isStringList = false;
         }
         LinkedList(int min, int max, int incr);
         LinkedList(std::string& str);
@@ -64,7 +65,7 @@ class LinkedList
         void addNode(int data);
         void deleteNode(int data);
 
-        void printList(bool isChar = false);
+        void printList(std::string str);
         void printList(int cnt);
         void printList(Node* head);
 		
@@ -94,7 +95,10 @@ extern LinkedList* list;
 
 void createListDriver();
 LinkedList* createListDriverHelper();
+void LoopOperationsDriver();
+void RearrangeNodesDriver();
 void mergeListDriver();
+void MultiListDriver();
 
 void createLoopDriver();
 void checkLoopDriver();

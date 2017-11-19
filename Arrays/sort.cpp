@@ -4,6 +4,8 @@
 
 using namespace std;
 
+static bool debug =false;
+
 void swap(int& val1, int& val2) {
 	int tmp = val1;
 	val1 = val2;
@@ -11,7 +13,6 @@ void swap(int& val1, int& val2) {
 }
 
 void bubbleSort() {
-	int tmp;
 	for (int i=0; i< (n-1); i++) {
 		for (int j=i; j<n; j++) {
 			if (arr[i]>arr[j]) {
@@ -22,7 +23,6 @@ void bubbleSort() {
 }
 
 void selectionSort() {
-	int tmp;
 	for (int i=0; i< (n-1); i++) {
 		int min = arr[i];
 		int ind = i;
@@ -35,12 +35,13 @@ void selectionSort() {
 		if (i < ind) {
 			swap(arr[i], arr[ind]);
 		}
-		//printArray("debug:",arr,n);
+		if (debug) {
+		  printArray("debug:",arr,n);
+		}
 	}
 }
 
 void insertionSort() {
-	int tmp;
 	for (int i=1; i< n; i++) {
 		int key = arr[i];
 		int j= i-1	;
@@ -49,7 +50,9 @@ void insertionSort() {
 			j--;
 		}
 		arr[j+1] = key;
-		//printArray("debug:",arr,n);
+		if (debug) {
+		  printArray("debug:",arr,n);
+		}
 	}
 }
 
@@ -88,6 +91,10 @@ void quickSort(int arr[], int low, int high)
         /* pi is partitioning index, arr[p] is now
            at right place */
         int pi = partition(arr, low, high);
+		if (debug) {
+			printf("pivot: %d ", arr[pi]);
+			printArray("debug:",arr,n);
+		}
  
         // Separately sort elements before
         // partition and after partition
@@ -96,7 +103,7 @@ void quickSort(int arr[], int low, int high)
     }
 }
 static vector<string> menuoptions =  {
-	"Return to main menu..",
+	"Return to main menu(press r for randomize array: d for debug: x for exit)..",
 	"Bubble Sort",
 	"Selection Sort",
 	"Insertion Sort",
@@ -104,28 +111,55 @@ static vector<string> menuoptions =  {
 };
 
 
+void randomizeArray() {
+	srandom(time(NULL));
+	int max = arr[n-1];
+	for (int i=0; i<n; i++)	 {
+		arr[i] = random() % max;
+	}	
+}
+
 void sortArrayDriver() {
-	int choice;
+	char choice;
 	do {
 		printArrayDriver();
 		cout << ("  Sorting Menu:\n");
 		app->displayMenu(menuoptions);
 		cout << "Enter your choice:";
 		cin >> choice;
+		app->clearinput();
 		switch(choice) {
-			case 0:
+			case '0':
 				return;
-			case 1:
+			case '1':
 				bubbleSort();
 				break;
-			case 2:
+			case '2':
 				selectionSort();
 				break;
-			case 3:
+			case '3':
 				insertionSort();
-			case 4:
+				break;
+			case '4':
 				quickSort(arr,0,n-1);
+				break;
+			case 'd':
+				if (debug) {
+					cout << "turning off debug mode \n";
+					debug = false;
+				} else {
+					cout << "turning on debug mode \n";
+					debug = true;					
+				}
+				break;
+			case 'r':
+				randomizeArray();
+				break;
+			case 'x':
+				exit(0);
+				break;
 			default:
+				cout << "unrecognized input. please try again \n";
 				continue;
 		}
 		

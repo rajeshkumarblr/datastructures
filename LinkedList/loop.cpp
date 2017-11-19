@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "LinkedList.h"
+#include <vector>
+#include "dsutils.h"
 
 using namespace std;
 void LinkedList::createLoop(int elem) {
@@ -45,8 +47,84 @@ void createLoopDriver() {
 
 void checkLoopDriver() {
 	if (list->isLoopDetected()) {
-		cout << "Loop detected in List" << endl;
+		cout << "Loop IS detected in List!" << endl;
 	} else {
-		cout << "Loop NOT detected in List" << endl;
+		cout << "Loop NOT detected in List!" << endl;
 	}
 }
+
+/**
+ * Input a->b->c->b->a
+ **/
+bool LinkedList::isPalindrome() {
+	bool isPalindrome = false;
+    if (head == NULL) {
+        return isPalindrome;
+    }
+    stack<int> st;
+
+    Node* node = head;
+    while (node != NULL) {
+		st.push(node->data);
+		node = node->next;
+    }
+
+	node = head;
+    while (node != NULL) {
+        if (st.top() != node->data) {
+            break;
+        }
+        st.pop();
+        node = node->next;
+    }
+    if (st.empty()) {
+        isPalindrome = true;
+    }
+    return isPalindrome;
+}
+
+void checkPalindromeDriver() {
+	if (list->isPalindrome()) {
+		cout << "List is a Palindrome" << endl;
+	} else {
+		cout << "List is NOT a Palindrome" << endl;
+	}
+}
+
+static vector<string> menuoptions = {
+    "Return to Main menu...(Press x for Exit)", 
+	"Create Loop in the list",
+	"Check if there is a loop in the list",
+	"Check if the list is a palindrome"
+};
+
+void LoopOperationsDriver() {
+	char choice;
+	do {
+		cout << ("\n  Loop Menu:\n");
+		app->displayMenu(menuoptions);
+		cout << "Enter your choice:";
+		cin >> choice;
+		app->clearinput();
+		switch(choice) {
+			case '0':
+				return;
+			case '1':
+				createLoopDriver();
+				break;
+			case '2':
+				checkLoopDriver();
+				break;
+			case '3':
+				checkPalindromeDriver();
+				break;
+			case 'x':
+				exit(0);
+				break;
+			default:
+				cout << "unrecognized input. please try again \n";
+				continue;
+		}
+	} while (choice != 0);
+}
+

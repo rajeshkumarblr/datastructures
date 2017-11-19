@@ -1,5 +1,6 @@
 #include "LinkedList.h"
 #include "dsutils.h"
+#include <sstream>
 using namespace std;
 
 LinkedList::LinkedList(int min, int max, int incr):LinkedList() {
@@ -9,6 +10,7 @@ LinkedList::LinkedList(int min, int max, int incr):LinkedList() {
 }
 
 LinkedList::LinkedList(std::string& str):LinkedList() {
+	isStringList = true;
     for (unsigned int i=0; i<str.size();i++) {
         addNode(str[i]);
     }
@@ -46,58 +48,132 @@ LinkedList::LinkedList(int arr[], int size):LinkedList() {
     }
 }
 
-LinkedList* createListDriverHelper() {
-	int choice;
-	cout << "  Enter the list create method" << endl;
-	cout << "  1. Create List By Range" << endl;
-	cout << "  2. Create List By String" << endl;
-	cout << "  3. Create List By number list" << endl;
-	cout << "  4. Create List By digits of number" << endl;
-	cin >> choice;
-	clearinput();
-	LinkedList* newlist;
-	switch (choice) {
-		case 1: {
-			int min, max, incr;
-			cout << "  Enter the range of array (first last step)" << endl;
-			cin >> min >> max >> incr;
-			clearinput();
-			newlist = new LinkedList(min,max,incr);
-			break;
-		}
-		case 2: {
-			string str;
-			cout << "  Enter the string to create the list" << endl;
-			cin >> str;
-			clearinput();
-			newlist = new LinkedList(str);
-			break;			
-		}
-		case 3: {
-			int num;
-			cout << "  Enter the number of elements in list" << endl;
-			cin >> num;
-			int* elements = new int[num];
-			for (int i=0; i<num; i++) {
-				cout << "Enter element no: " << i << endl; 
-				cin >> elements[i];
-			}
-			newlist = new LinkedList(elements, num);
-			clearinput();
-			break;			
-		}
-		case 4: {
-			int num;
-			cout << "Enter the number to create list of digits" << endl;
-			cin >> num;
-			newlist = new LinkedList(num);
-			clearinput();
-			break;	
-		}
+LinkedList* createListByValues() {
+	int num;
+	cout << "Create List with specified elements:" << endl;
+	cout << "Enter the number of elements:";
+	cin >> num;
+	int val;
+	LinkedList* newList = new LinkedList();
+	for (int i=0; i< num; i++) {
+		cout << "Enter the next element(" << i << ")";
+		cin >> val;
+		newList->addNode(val);
 	}
+	return newList;
+}
+
+LinkedList* createListRange(int min, int max, int incr) {
+	return new LinkedList(min, max, incr);
+}
+
+LinkedList* createListRandom(int num, int min, int max) {
+	srandom(time(NULL));
+	double mul = ((max - min) / (double) RAND_MAX);
+	LinkedList *newList = new LinkedList();
+	for (int i=0; i< num; i++) {
+		int val = min + (rand() * mul);
+		newList->addNode(val);
+	}
+	return newList;
+}
+
+LinkedList* createListsRandomDriver() {
+	int start, end, num;
+	cout << "Create List with random elements:" << endl;
+	cout << "Enter the number of elements:";
+	cin >> num;
+	cout << " Enter the range (start end):";
+	cin >> start >> end;
+	cout << "Entered range is: (" << start << " - " << end << "). number of elements: " << num << endl;
+	LinkedList* newlist = createListRandom(num,start, end);
 	return newlist;
+}
+
+LinkedList* createListRangeDriver() {
+	int start, end, incr;
+	cout << "Create List by range:" << endl;
+	cout << " Enter the range (start end):";
+	cin >> start >> end;
+	cout << " Enter the increment by value:";
+	cin >> incr;
+	cout << " Entered range is: (" << start << " - " << end << "). increment by: " << incr << endl;
+	LinkedList* newlist = createListRange(start, end, incr);
+	return newlist;
+}
+
+LinkedList* createListByStringDriver() {
+	string str;
+	cout << "Create List by a string:" << endl;
+	cout << "Enter the string for linked list:";
+	cin >> str;
+	LinkedList *newList = new LinkedList(str);
+	return newList;
+}
+
+LinkedList* createListByNumbersDriver() {
+	int num;
+	cout << "Create List with specific elements:" << endl;
+	cout << "Enter the number of elements:";
+	cin >> num;
+	LinkedList *newList = new LinkedList();
+	int val;
+	for (int i=0; i< num; i++) {
+		cout << "Enter the next element(" << i << ")";
+		cin>> val;
+		newList->addNode(val);
+	}
+	return newList;
+}
+
+static vector<string> menuoptions = {
+    "Return to Main menu...(Press x for Exit)", 
+	"Create List By Range of numbers",
+	"Create List by string",
+	"Create List by Number list",
+	"Create List by digits of number",
+	"Create List by random numbers"
+};
+
+LinkedList* createListDriverHelper() {
+	char choice;
+	LinkedList* newList = NULL;
+	do {
+		cout << ("\n  Create Menu:\n");
+		app->displayMenu(menuoptions);
+		cout << "Enter your choice:";
+		cin >> choice;
+		app->clearinput();
+		switch(choice) {
+			case '0':
+				return NULL;
+			case '1':
+				newList = createListRangeDriver();
+				break;
+			case '2':
+				newList = createListByStringDriver();
+				break;
+			case '3':
+				newList = createListByValues();
+				break;
+			case '4':
+				newList = createListByNumbersDriver();
+				break;
+			case '5':
+				newList = createListsRandomDriver();
+				break;
+			case 'x':
+				exit(0);
+				break;
+			default:
+				cout << "unrecognized input. please try again \n";
+				continue;
+		}
+	} while (newList == NULL);
+	return newList;
 }
 
 void createListDriver() {
 	list = createListDriverHelper();
+	list->printList("created List");
 }

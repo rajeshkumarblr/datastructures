@@ -10,25 +10,52 @@ using namespace std;
 LinkedList* list;
 
 void printListDriver() {
-	list->printList();
+	list->printList("current list");
 }
 
-static vector<option>  options {
-	{ "Create List", createListDriver },
-	{ "Reverse List", reverseListDriver },
-	{ "Check If Palindrome", checkPalindromeDriver },
-	{ "Swap Adjaccent Nodes", swapAdjacentNodesDriver },
-	{ "Create Loop in List", createLoopDriver},
-	{ "Check if Loop is detected", checkLoopDriver},
-	{ "Merge List", mergeListDriver },
-	{ "Add with another List", addListDriver },
+static vector<string>  menuoptions {
+	"Exit",
+	"Create List...",
+	"Check Linked list(loop/palindrome)...",
+	"Rearrange List Nodes(reverse/swap/sort)...",
+	"Operations on two lists(merge/add)..",
 };
 
 int main(int argc, char **argv) {
-	//list = new LinkedList(10,80,10);
-	list = new LinkedList(12345);
-	menuloop(options,printListDriver);
-	return 0;
+	list = new LinkedList(10,80,10);
+	//list = new LinkedList(12345);
+    app = new ConsoleApp();
+    //createArray(10, 80, 10);
+	//createArrayRandom(10,10,100);
+    int choice;
+    do {
+		cout << ("\n  Main Menu:\n");
+		list->printList("current list");
+		app->displayMenu(menuoptions);
+		cout << "Enter your choice:";
+		cin >> choice;
+		switch(choice) {
+			case 0:
+				return 0;
+			case 1:
+				createListDriver();
+				break;
+			case 2:
+				LoopOperationsDriver();
+				break;
+			case 3:
+				RearrangeNodesDriver();
+				break;
+			case 4:
+				MultiListDriver();
+				break;
+			default:
+				break;
+		}
+
+    } while(choice != 0);
+
+    return 0;
 }
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="list" InternalType="Console">
+<CodeLite_Project Name="list" InternalType="Console" Version="10.0.0">
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00010001N0005Debug000000000000]]>
@@ -24,13 +24,13 @@
     <File Name="LinkedList.h"/>
     <File Name="util.cpp"/>
     <File Name="main.cpp"/>
-    <File Name="palindrome.cpp"/>
     <File Name="merge.cpp"/>
-    <File Name="reverse.cpp"/>
     <File Name="swap.cpp"/>
     <File Name="loop.cpp"/>
     <File Name="create.cpp"/>
     <File Name="addlists.cpp"/>
+    <File Name="arrange.cpp"/>
+    <File Name="multilist.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>

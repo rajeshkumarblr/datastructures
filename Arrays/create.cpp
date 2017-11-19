@@ -26,7 +26,7 @@ void createArray(int st, int end, int incr) {
 
 void createArrayValues() {
 	int num;
-	cout << "Create array with random elements:" << endl;
+	cout << "Create array with specific elements:" << endl;
 	cout << "Enter the number of elements:";
 	cin >> num;
 	allocateArray(num);

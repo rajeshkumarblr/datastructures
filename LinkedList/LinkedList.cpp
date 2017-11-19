@@ -54,10 +54,11 @@ Node* LinkedList::getMiddleNode() {
     return slowPtr;
 }
 
-void LinkedList::printList(bool isChar) {
-    Node* node = head;
+void LinkedList::printList(string str) {
+	cout << str << ":";
+    Node* node = head;	
     while (node) {
-		if (isChar) {
+		if (isStringList) {
 			cout<< (char) node->data;
 		} else {
 			cout<< node->data;

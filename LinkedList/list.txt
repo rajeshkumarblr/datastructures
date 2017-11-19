@@ -1,1 +1,1 @@
-./Debug/LinkedList.cpp.o ./Debug/util.cpp.o ./Debug/main.cpp.o ./Debug/palindrome.cpp.o ./Debug/merge.cpp.o ./Debug/reverse.cpp.o ./Debug/swap.cpp.o ./Debug/loop.cpp.o ./Debug/create.cpp.o ./Debug/addlists.cpp.o   
+./Debug/LinkedList.cpp.o ./Debug/util.cpp.o ./Debug/main.cpp.o ./Debug/merge.cpp.o ./Debug/swap.cpp.o ./Debug/loop.cpp.o ./Debug/create.cpp.o ./Debug/addlists.cpp.o ./Debug/arrange.cpp.o ./Debug/multilist.cpp.o

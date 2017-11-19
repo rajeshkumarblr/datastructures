@@ -47,7 +47,7 @@ static Node* addLinkedList(Node* list1, Node* list2) {
 	return node;
 }
 
-void LinkedList::addList(LinkedList* list2) {
+LinkedList* LinkedList::addList(LinkedList* list2) {
 	head = addLinkedList(getHead(), list2->getHead());
 }
 
@@ -56,6 +56,6 @@ LinkedList* createListDriverHelper();
 void addListDriver() {
 	cout << "Add two Linked lists together:" << endl;
 	LinkedList* list2 = createListDriverHelper();
-	list2->printList();
+	list2->printList("second list");
 	list->addList(list2);
 }
