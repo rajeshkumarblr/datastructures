@@ -16,6 +16,7 @@ void printListDriver() {
 static vector<string>  menuoptions {
 	"Exit",
 	"Create List...",
+	"Find element..",
 	"Check Linked list(loop/palindrome)...",
 	"Rearrange List Nodes(reverse/swap/sort)...",
 	"Operations on two lists(merge/add)..",
@@ -41,12 +42,15 @@ int main(int argc, char **argv) {
 				createListDriver();
 				break;
 			case 2:
-				LoopOperationsDriver();
+				findNodesDriver();
 				break;
 			case 3:
-				RearrangeNodesDriver();
+				LoopOperationsDriver();
 				break;
 			case 4:
+				RearrangeNodesDriver();
+				break;
+			case 5:
 				MultiListDriver();
 				break;
 			default:

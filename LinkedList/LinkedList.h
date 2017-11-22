@@ -88,7 +88,6 @@ class LinkedList
 		friend void mergeListDriver();
 		
 		LinkedList* addList(LinkedList* list2);
-
 };
 
 extern LinkedList* list;
@@ -99,6 +98,7 @@ void LoopOperationsDriver();
 void RearrangeNodesDriver();
 void mergeListDriver();
 void MultiListDriver();
+void findNodesDriver();
 
 void createLoopDriver();
 void checkLoopDriver();

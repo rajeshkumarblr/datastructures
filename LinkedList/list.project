@@ -31,6 +31,8 @@
     <File Name="addlists.cpp"/>
     <File Name="arrange.cpp"/>
     <File Name="multilist.cpp"/>
+    <File Name="find.cpp"/>
+    <File Name="sort.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>

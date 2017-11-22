@@ -13,46 +13,6 @@ void LinkedList::addNode(int data) {
 }
 
 
-Node* LinkedList::getNodeFromEnd(int n) 
-{
-    Node* front = head;
-
-    for (int i=0; front && i<n; i++) {
-        front = front->next;
-    }
-
-    if (front == NULL) {
-        return NULL;
-    }
-
-    Node* prev = front;
-
-    while (front) {
-        prev = front;
-        front = front->next;
-    }
-
-    return prev;
-}
-
-Node* LinkedList::getMiddleNode() {
-    if (head == NULL) {
-        return NULL;
-    } else if (head->next == NULL) {
-        return head;
-    }
-
-    Node* slowPtr = head;
-    Node* fastPtr = head;
-    while (fastPtr) {
-        slowPtr = slowPtr->next;
-        fastPtr = fastPtr->next;
-        if (fastPtr) {
-            fastPtr = fastPtr->next;
-        }
-    }
-    return slowPtr;
-}
 
 void LinkedList::printList(string str) {
 	cout << str << ":";

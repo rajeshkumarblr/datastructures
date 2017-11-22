@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Rajesh
-Date                   :=18/11/17
+Date                   :=22/11/17
 CodeLitePath           :=/home/rajesh/.codelite
 LinkerName             :=/usr/bin/g++
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
@@ -61,7 +61,7 @@ AS       := /usr/bin/as
 ##
 CodeLiteDir:=/usr/share/codelite
 Objects0=$(IntermediateDirectory)/LinkedList.cpp$(ObjectSuffix) $(IntermediateDirectory)/util.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/merge.cpp$(ObjectSuffix) $(IntermediateDirectory)/swap.cpp$(ObjectSuffix) $(IntermediateDirectory)/loop.cpp$(ObjectSuffix) $(IntermediateDirectory)/create.cpp$(ObjectSuffix) $(IntermediateDirectory)/addlists.cpp$(ObjectSuffix) $(IntermediateDirectory)/arrange.cpp$(ObjectSuffix) $(IntermediateDirectory)/multilist.cpp$(ObjectSuffix) \
-	
+	$(IntermediateDirectory)/find.cpp$(ObjectSuffix) 
 
 
 
@@ -171,6 +171,14 @@ $(IntermediateDirectory)/multilist.cpp$(DependSuffix): multilist.cpp
 
 $(IntermediateDirectory)/multilist.cpp$(PreprocessSuffix): multilist.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/multilist.cpp$(PreprocessSuffix) multilist.cpp
+
+$(IntermediateDirectory)/find.cpp$(ObjectSuffix): find.cpp $(IntermediateDirectory)/find.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/rajesh/myworkspace/datastructures/LinkedList/find.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/find.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/find.cpp$(DependSuffix): find.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/find.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/find.cpp$(DependSuffix) -MM find.cpp
+
+$(IntermediateDirectory)/find.cpp$(PreprocessSuffix): find.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/find.cpp$(PreprocessSuffix) find.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
